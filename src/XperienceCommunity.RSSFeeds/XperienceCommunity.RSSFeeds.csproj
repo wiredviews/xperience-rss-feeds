@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<Description>
+			RSS Feed Integration for ASP.NET Core based Kentico Xperience 13.0 applications using Content Tree Routing
+		</Description>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Kentico.Xperience.AspNetCore.WebApp" Version="[13.0.0, 13.1.0)" />
+		<PackageReference Include="WilderMinds.RssSyndication" Version="1.7.0" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\images\wv-logo.png" Pack="true" Visible="false" PackagePath="" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<AssemblyAttribute Include="CMS.AssemblyDiscoverableAttribute">
+		</AssemblyAttribute>
+	</ItemGroup>
+
+</Project>
