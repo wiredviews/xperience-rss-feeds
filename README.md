@@ -88,6 +88,49 @@ And the resulting RSS Feed:
     <img src="./images/03-example-rss-feed-content.jpg" alt="Generated RSS Feed" width="400" />
 </a>
 
+### Auto Populating `DocumentPageTitle`, `DocumentPageDescription` and `DocumentPageKeywords`
+
+Populating the `TreeNode` fields used by this package can be additional work for Content Managers, especially when
+the values they want in these fields already exist in the Page Type custom fields for each Page Type.
+
+Fortunately this can be easily resolved by using Document Global Events in a custom Module class:
+
+```csharp
+[assembly: RegisterModule(typeof(TreeNodeEventsModule))]
+
+namespace CMSApp
+{
+    public class TreeNodeEventsModule : Module
+    {
+        public TreeNodeEventsModule() : base(nameof(TreeNodeEventsModule)) { }
+
+        protected override void OnInit()
+        {
+            base.OnInit();
+
+            DocumentEvents.Insert.Before += Insert_Before;
+            DocumentEvents.Update.Before += Update_Before;
+        }
+
+        private void Update_Before(object sender, DocumentEventArgs e)
+        {
+            e.Node.SetValue("DocumentPageTitle", ...);
+            e.Node.SetValue("DocumentPageDescription", ...);
+            e.Node.SetValue("DocumentPageKeywords", ...);
+        }
+
+        private void Insert_Before(object sender, DocumentEventArgs e)
+        {
+            e.Node.SetValue("DocumentPageTitle", ...);
+            e.Node.SetValue("DocumentPageDescription", ...);
+            e.Node.SetValue("DocumentPageKeywords", ...);
+        }
+    }
+}
+```
+
+### Customizing Feed Item Creation
+
 If you need to populate more of the fields for the RSS Feed Items (like Author) or you want to use something other than `DocumentLastPublished` to order the results populating the Feed, then implement your own `IRSSFeedItemsRetriever` using whatever `DocumentQuery` fits your needs.
 
 You could even use the `RSSFeedPage` instance to populate different content for the same Page Types in different parts of the Content Tree.
