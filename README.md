@@ -44,7 +44,7 @@ This package is compatible with ASP.NET Core 3.1+ and is designed to be used wit
    {
        // ...
 
-       public async Task<ICollection<Item>> RetrieveAsync(string[] pageTypes, int count, CancellationToken token)
+       public async Task<ICollection<Item>> RetrieveAsync(RSSFeedPage feedPage, CancellationToken token)
        {
            // ...
        }
