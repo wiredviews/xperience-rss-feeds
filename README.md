@@ -34,9 +34,9 @@ This package is compatible with ASP.NET Core 3.1+ and is designed to be used wit
 
 1. Create a new Page (anywhere) in the Content Tree for your RSS Feed and populate the required fields:
 
-    <a href="./images/01-new-rss-page-in-content-tree.jpg">
-        <img src="./images/01-new-rss-page-in-content-tree.jpg" alt="New RSS Page in Content Tree" width="400" />
-    </a>
+<a href="./images/01-new-rss-page-in-content-tree.jpg">
+    <img src="./images/01-new-rss-page-in-content-tree.jpg" alt="New RSS Page in Content Tree" width="400" />
+</a>
 
 1. Optional: Create your own custom `IRSSFeedItemsRetriever` implementation:
 
@@ -88,6 +88,8 @@ And the resulting RSS Feed:
     <img src="./images/03-example-rss-feed-content.jpg" alt="Generated RSS Feed" width="400" />
 </a>
 
+If the `RSSFeedController` is called from outside Xperience's routing or if the RSS Feed Page has no selected Page Types, the URL will return a 404.
+
 ### Auto Populating `DocumentPageTitle`, `DocumentPageDescription` and `DocumentPageKeywords`
 
 Populating the `TreeNode` fields used by this package can be additional work for Content Managers, especially when
@@ -131,9 +133,9 @@ namespace CMSApp
 
 ### Customizing Feed Item Creation
 
-If you need to populate more of the fields for the RSS Feed Items (like Author) or you want to use something other than `DocumentLastPublished` to order the results populating the Feed, then implement your own `IRSSFeedItemsRetriever` using whatever `DocumentQuery` fits your needs.
+If you need to populate more of the fields for the RSS Feed Items (like Author), use something other than `DocumentLastPublished` to order the results populating the Feed, or populate the Feed items from specific database columns, then implement your own `IRSSFeedItemsRetriever` using whatever `DocumentQuery` fits your needs.
 
-You could even use the `RSSFeedPage` instance to populate different content for the same Page Types in different parts of the Content Tree.
+You can also use the `RSSFeedPage` parameter to populate different content for the same Page Types in different parts of the Content Tree.
 
 ## References
 

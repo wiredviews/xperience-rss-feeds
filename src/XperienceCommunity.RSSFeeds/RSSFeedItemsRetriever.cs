@@ -50,7 +50,7 @@ namespace XperienceCommunity.RSSFeeds
 
         public async Task<ICollection<Item>> RetrieveAsync(RSSFeedPage feedPage, CancellationToken token)
         {
-            string[] pageTypes = feedPage.Fields.PageTypes.Split(";").Select(t => t.Trim()).ToArray();
+            string[] pageTypes = feedPage.Fields.PageTypesSet;
 
             int itemsCount = Math.Clamp(feedPage.Fields.ItemsCount, 1, int.MaxValue);
             int cacheLifetimeMinutes = Math.Clamp(feedPage.Fields.CacheLifetimeMinutes, 0, int.MaxValue);

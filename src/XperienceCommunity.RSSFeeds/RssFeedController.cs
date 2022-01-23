@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using CMS.Core;
 using CMS.DocumentEngine.Types.XperienceCommunity;
 using Kentico.Content.Web.Mvc;
 using Kentico.Content.Web.Mvc.Routing;
@@ -17,28 +18,46 @@ namespace XperienceCommunity.RSSFeeds
     /// </summary>
     public class RssFeedController : Controller
     {
+        public const string FEED_CONTENT_TYPE = "application/rss+xml";
+
         private readonly IPageDataContextRetriever dataContextRetriever;
         private readonly IRSSFeedItemsRetriever itemsRetriever;
         private readonly IPageUrlRetriever pageUrlRetriever;
+        private readonly IEventLogService log;
 
-        public RssFeedController(IPageDataContextRetriever dataContextRetriever, IRSSFeedItemsRetriever itemsRetriever, IPageUrlRetriever pageUrlRetriever)
+        public RssFeedController(
+            IPageDataContextRetriever dataContextRetriever,
+            IRSSFeedItemsRetriever itemsRetriever,
+            IPageUrlRetriever pageUrlRetriever,
+            IEventLogService log)
         {
             this.itemsRetriever = itemsRetriever ?? throw new ArgumentNullException(nameof(itemsRetriever));
             this.dataContextRetriever = dataContextRetriever;
             this.pageUrlRetriever = pageUrlRetriever;
+            this.log = log;
         }
 
         public async Task<ActionResult> Index(CancellationToken token = default)
         {
             if (!dataContextRetriever.TryRetrieve<RSSFeedPage>(out var data))
             {
+                log.LogError(
+                    nameof(RssFeedController),
+                    "MISSING_PAGE_CONTEXT",
+                    $"No Page Context found for Page Type [{RSSFeedPage.CLASS_NAME}]");
+
                 return NotFound();
             }
 
             var page = data.Page;
 
-            if (page.Fields.PageTypes.Length == 0)
+            if (page.Fields.PageTypesSet.Length == 0)
             {
+                log.LogError(
+                    nameof(RssFeedController),
+                    "MISSING_PAGE_TYPES",
+                    $"No Page Types selected for Page [{page.NodeGUID}]|[{page.NodeAliasPath}]");
+
                 return NotFound();
             }
 
@@ -52,7 +71,7 @@ namespace XperienceCommunity.RSSFeeds
 
             feed.Items = await itemsRetriever.RetrieveAsync(page, token);
 
-            return Content(feed.Serialize(), "application/rss+xml");
+            return Content(feed.Serialize(), FEED_CONTENT_TYPE);
         }
     }
 }
