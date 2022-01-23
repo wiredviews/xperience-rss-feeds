@@ -139,10 +139,8 @@ You can also use the `RSSFeedPage` parameter to populate different content for t
 
 ## References
 
-- [Kentico Xperience Content Tree Routing docs](https://docs.xperience.io/developing-websites/implementing-routing/content-tree-based-routing)
 - [RssSyndication project on GitHub](https://github.com/shawnwildermuth/RssSyndication)
 
 ### Kentico Xperience
 
-- [Kentico Xperience Design Patterns: MVC is Dead, Long Live PTVC](https://dev.to/seangwright/kentico-xperience-design-patterns-mvc-is-dead-long-live-ptvc-4635#building-pages-with-page-templates)
-- [Filtering Page Templates](https://docs.xperience.io/developing-websites/page-builder-development/developing-page-templates/filtering-page-templates)
+- [Kentico Xperience Content Tree Routing docs](https://docs.xperience.io/developing-websites/implementing-routing/content-tree-based-routing)
