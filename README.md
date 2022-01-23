@@ -33,10 +33,9 @@ This package is compatible with ASP.NET Core 3.1+ and is designed to be used wit
    ```
 
 1. Create a new Page (anywhere) in the Content Tree for your RSS Feed and populate the required fields:
-
-<a href="./images/01-new-rss-page-in-content-tree.jpg">
-    <img src="./images/01-new-rss-page-in-content-tree.jpg" alt="New RSS Page in Content Tree" width="400" />
-</a>
+   <a href="./images/01-new-rss-page-in-content-tree.jpg">
+   <img src="./images/01-new-rss-page-in-content-tree.jpg" alt="New RSS Page in Content Tree" width="400" />
+   </a>
 
 1. Optional: Create your own custom `IRSSFeedItemsRetriever` implementation:
 
