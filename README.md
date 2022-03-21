@@ -136,6 +136,12 @@ If you need to populate more of the fields for the RSS Feed Items (like Author),
 
 You can also use the `RSSFeedPage` parameter to populate different content for the same Page Types in different parts of the Content Tree.
 
+## Contributions
+
+If you discover a problem, please [open an issue](https://github.com/wiredviews/xperience-rss-feeds/issues/new).
+
+If you would like contribute to the code or documentation, please [open a pull request](https://github.com/wiredviews/xperience-rss-feeds/compare).
+
 ## References
 
 - [RssSyndication project on GitHub](https://github.com/shawnwildermuth/RssSyndication)
